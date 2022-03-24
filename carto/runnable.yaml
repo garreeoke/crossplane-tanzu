@@ -1,0 +1,11 @@
+apiVersion: carto.run/v1alpha1
+kind: Runnable
+metadata:
+  name: rmq-1
+spec:
+  serviceAccountName: default
+  runTemplateRef:
+    name: upbound-rabbit
+  #inputs:
+  #  blob-url: https://github.com/kontinue/hello-world
+  #  blob-revision: 19769456b6b229b3e78f2b90eced15a353eb4e7c

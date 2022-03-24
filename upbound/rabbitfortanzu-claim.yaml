@@ -1,0 +1,7 @@
+apiVersion: example.crossplane.io/v1alpha1
+kind: RabbitForTanzu
+metadata:
+  name: rmq-no-carto
+spec:
+  part-of: spring-sensors
+  #rabbit-name: rmq-no-carto

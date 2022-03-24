@@ -1,0 +1,31 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xrabbitfortanzus.example.crossplane.io
+spec:
+  connectionSecretKeys:
+  - kubeconfig
+  group: example.crossplane.io
+  names:
+    kind: XRabbitForTanzu
+    plural: xrabbitfortanzus
+  claimNames:
+    kind: RabbitForTanzu
+    plural: rabbitfortanzus
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          description: A RabbitForTanzu is a composite resource that represents a rabbitmqcluster for tanzu 
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                part-of:
+                  type: string
+                  description: Name of application this is part of
+              required:
+                - part-of

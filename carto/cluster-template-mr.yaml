@@ -1,0 +1,21 @@
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterTemplate
+metadata:
+  name: crossplane-template-mr-only
+spec:
+  template:
+    apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    metadata:
+      name: rmq-with-carto-mr-only
+    spec:
+      forProvider:
+        manifest:
+          apiVersion: rabbitmq.com/v1beta1
+          kind: RabbitmqCluster
+          metadata:
+            name: rmq-with-carto-mr-only
+            namespace: default
+      providerConfigRef:
+        name: kubernetes-provider

@@ -1,0 +1,13 @@
+---
+apiVersion: carto.run/v1alpha1
+kind: ClusterTemplate
+metadata:
+  name: crossplane-template
+spec:
+  template:
+    apiVersion: $(params.api-version)$
+    kind: $(params.api-kind)$
+    metadata:
+      name: $(params.object-name)$
+    spec:
+      part-of: spring-sensors

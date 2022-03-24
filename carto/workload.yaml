@@ -1,0 +1,27 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: crossplane-carto
+  labels:
+    apps.tanzu.vmware.com/workload-type: crossplanetest
+    app.kubernetes.io/part-of: spring-sensors
+spec:
+  source:
+    git:
+      url: https://github.com/ryan-a-baker/spring-sensors-rabbit.git
+      ref:
+        branch: main
+  params:
+    - name: api-version
+      value: example.crossplane.io/v1alpha1
+    - name: api-kind
+      value: RabbitForTanzu
+    - name: object-name
+      value: rmq-with-carto
+  # Could use below service claim once hooked up to tanzu
+  #serviceClaims:
+  #  - name: rmq
+  #    ref:
+  #      apiVersion: rabbitmq.com/v1beta1
+  #      kind: RabbitmqCluster
+  #      name: rmq-1

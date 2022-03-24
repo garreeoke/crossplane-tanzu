@@ -1,0 +1,14 @@
+apiVersion: carto.run/v1alpha1
+kind: ClusterRunTemplate
+metadata:
+  name: crossplane-runner
+spec:
+  #outputs:
+  #  binding: .status.binding[?(@.name=="name")].value
+  template:
+    apiVersion: example.crossplane.io/v1alpha1
+    kind: RabbitForTanzu
+    metadata:
+      name: rmq-runnable
+    spec:
+      part-of: spring-sensors
