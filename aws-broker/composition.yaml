@@ -1,0 +1,31 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xbrokerfortanzus.carto.crossplane.io
+spec:
+  writeConnectionSecretsToNamespace: upbound-system
+  compositeTypeRef:
+    apiVersion: carto.crossplane.io/v1alpha1
+    kind: XBrokerForTanzu
+  resources:
+    - base:
+        apiVersion: mq.aws.jet.crossplane.io/v1alpha1
+        kind: Broker
+        spec:
+          forProvider:
+            autoMinorVersionUpgrade: true
+            engineType: RabbitMQ
+            engineVersion: "3.9.13"
+            deploymentMode: SINGLE_INSTANCE
+            hostInstanceType: mq.m5.large
+            publiclyAccessible: true
+            region: us-west-2
+            users:
+              - consoleAccess: true
+                username: rabbit1
+      patches:
+        - fromFieldPath: spec.id
+          toFieldPath: spec.id
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.brokerName
+        
