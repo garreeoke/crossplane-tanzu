@@ -1,6 +1,6 @@
 apiVersion: carto.crossplane.io/v1alpha1
 kind: BrokerForTanzu
 metadata:
-  name: carto-broker-5
+  name: carto-broker-2
 spec:
-  id: carto-broker-5
+  id: carto-broker-2

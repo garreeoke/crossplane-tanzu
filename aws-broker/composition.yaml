@@ -20,7 +20,7 @@ spec:
             hostInstanceType: mq.m5.large
             publiclyAccessible: true
             region: us-west-2
-            users:
+            user:
               - consoleAccess: true
                 username: rabbit1
       patches:
