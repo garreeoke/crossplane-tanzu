@@ -23,6 +23,10 @@ spec:
             user:
               - consoleAccess: true
                 username: rabbit1
+                passwordSecretRef:
+                  key: rabbit
+                  name: cloud-creds
+                  namespace: upbound-system
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.id
