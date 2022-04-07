@@ -25,7 +25,7 @@ spec:
                 username: rabbit1
                 passwordSecretRef:
                   key: rabbit
-                  name: cloud-cred
+                  name: cloud-creds
                   namespace: upbound-system
       patches:
         - fromFieldPath: spec.id
