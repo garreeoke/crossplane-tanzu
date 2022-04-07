@@ -24,8 +24,8 @@ spec:
               - consoleAccess: true
                 username: rabbit1
                 passwordSecretRef:
-                  key: rabbit
-                  name: cloud-creds
+                  key: rabbit1
+                  name: cloud-cred
                   namespace: upbound-system
       patches:
         - fromFieldPath: spec.id
