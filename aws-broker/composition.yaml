@@ -3,7 +3,6 @@ kind: Composition
 metadata:
   name: xbrokerfortanzus.carto.crossplane.io
 spec:
-  deletionPolicy: Delete
   compositeTypeRef:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: XBrokerForTanzu
@@ -12,6 +11,7 @@ spec:
         apiVersion: mq.aws.jet.crossplane.io/v1alpha1
         kind: Broker
         spec:
+          deletionPolicy: Delete
           forProvider:
             autoMinorVersionUpgrade: true
             engineType: RabbitMQ
