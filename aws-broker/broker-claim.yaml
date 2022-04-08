@@ -3,4 +3,6 @@ kind: BrokerForTanzu
 metadata:
   name: carto-broker-1
 spec:
+  writeConnectionSecretToRef:
+    name: brokerfortanzu
   id: carto-broker-1

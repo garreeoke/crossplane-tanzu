@@ -3,7 +3,7 @@ kind: Composition
 metadata:
   name: xbrokerfortanzus.carto.crossplane.io
 spec:
-  writeConnectionSecretsToNamespace: upbound-system
+  deletionPolicy: Delete
   compositeTypeRef:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: XBrokerForTanzu
