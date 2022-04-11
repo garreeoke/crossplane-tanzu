@@ -11,7 +11,7 @@ spec:
         apiVersion: mq.aws.jet.crossplane.io/v1alpha1
         kind: Broker
         spec:
-          deletionPolicy: Delete
+          deletionPolicy: "Delete"
           forProvider:
             autoMinorVersionUpgrade: true
             engineType: RabbitMQ
@@ -34,4 +34,8 @@ spec:
           toFieldPath: spec.id
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.brokerName
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-broker"
         
