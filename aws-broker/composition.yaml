@@ -8,7 +8,7 @@ spec:
     kind: XBrokerForTanzu
   resources:
     - base:
-        apiVersion: mq.aws.jet.crossplane.io/v1alpha1
+        apiVersion: mq.aws.crossplane.io/v1alpha1
         kind: Broker
         spec:
           deletionPolicy: "Delete"
