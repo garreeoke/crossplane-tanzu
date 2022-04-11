@@ -32,10 +32,10 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.id
           toFieldPath: spec.id
-        - fromFieldPath: spec.id
-          toFieldPath: spec.forProvider.brokerName
-          transforms:
-            - type: string
-              string:
-                fmt: "%s-broker"
+        #- fromFieldPath: spec.id
+        #  toFieldPath: spec.forProvider.brokerName
+        #  transforms:
+        #    - type: string
+        #      string:
+        #        fmt: "%s-broker"
         
