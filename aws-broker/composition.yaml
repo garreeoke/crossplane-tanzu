@@ -29,6 +29,8 @@ spec:
                   namespace: upbound-system
       patches:
         - fromFieldPath: spec.id
+          toFieldPath: metadata.name
+        - fromFieldPath: spec.id
           toFieldPath: spec.id
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.brokerName
