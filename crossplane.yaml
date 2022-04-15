@@ -1,0 +1,13 @@
+apiVersion: meta.pkg.crossplane.io/v1alpha1
+kind: Configuration
+metadata:
+  name: carto-crossplane
+  annotations:
+    provider: aws
+    vpc: default
+spec:
+  crossplane:
+    version: ">=v1.7.0"
+  dependsOn:
+    - provider: crossplane/provider-aws
+      version: ">=v0.26.0"
