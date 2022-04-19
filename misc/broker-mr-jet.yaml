@@ -1,0 +1,24 @@
+apiVersion: mq.aws.jet.crossplane.io/v1alpha1
+kind: Broker
+metadata:
+  name: rabbit1-upbound-aaront
+  annotations:
+    crossplane.io/external-name: rabbit1-upbound-aaront
+spec:
+  deletionPolicy: "Delete"
+  forProvider:
+    applyImmediately: true
+    autoMinorVersionUpgrade: true
+    engineType: RabbitMQ
+    brokerName: rabbit1-upbound-aaront
+    engineVersion: "3.9.13"
+    deploymentMode: SINGLE_INSTANCE
+    hostInstanceType: mq.t3.micro
+    publiclyAccessible: false
+    region: us-west-2
+    user:
+      - username: rabbit1
+        passwordSecretRef:
+          key: rabbit
+          name: cloud-creds
+          namespace: upbound-system

@@ -1,0 +1,31 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xbrokerfortanzujets.carto.crossplane.io
+spec:
+  connectionSecretKeys:
+  - kubeconfig
+  group: carto.crossplane.io
+  names:
+    kind: XBrokerForTanzuJet
+    plural: xbrokerfortanzujets
+  claimNames:
+    kind: BrokerForTanzuJet
+    plural: brokerfortanzujets
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          description: Create a amazon mq broker for use with carto 
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: "id/name"
+              required:
+                - id

@@ -1,8 +1,8 @@
-apiVersion: aws.jet.crossplane.io/v1alpha1
+apiVersion: aws.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default
-spec: 
+spec:
   credentials:
     source: Secret
     secretRef:

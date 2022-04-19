@@ -1,18 +1,19 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xbrokerfortanzus.carto.crossplane.io
+  name: xbrokerfortanzujets.carto.crossplane.io
 spec:
   compositeTypeRef:
     apiVersion: carto.crossplane.io/v1alpha1
-    kind: XBrokerForTanzu
+    kind: XBrokerForTanzuJet
   resources:
     - base:
-        apiVersion: mq.aws.crossplane.io/v1alpha1
+        apiVersion: mq.aws.jet.crossplane.io/v1alpha1 # Uncomment to use jet
         kind: Broker
         spec:
           deletionPolicy: "Delete"
           forProvider:
+            brokerName: test-broker # uncomment this is using jet provider
             autoMinorVersionUpgrade: true
             engineType: RabbitMQ
             engineVersion: "3.9.13"
@@ -22,12 +23,13 @@ spec:
             securityGroups: []
             subnetIDs: []
             region: us-west-2
-            #users:
-            #  - username: rabbit1
-            #    passwordSecretRef:
-            #      key: rabbit
-            #      name: cloud-creds
-            #      namespace: upbound-system
+            # Uncoment users section if using jet provider
+            users:
+              - username: rabbit1
+                passwordSecretRef:
+                  key: rabbit
+                  name: cloud-creds
+                  namespace: upbound-system
       patches:
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
