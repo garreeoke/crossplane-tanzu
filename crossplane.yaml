@@ -9,5 +9,5 @@ spec:
   crossplane:
     version: ">=v1.7.0"
   dependsOn:
-    - provider: crossplane/provider-aws
-      version: ">=v0.26.0"
+    - provider: crossplane/provider-jet-aws
+      version: ">=v0.4.0"
