@@ -20,7 +20,7 @@ spec:
             hostInstanceType: mq.t3.micro
             publiclyAccessible: true
             region: us-west-2
-            users:
+            user:
               - passwordSecretRef:
                   key: rabbit
       name: broker-for-tanzu
