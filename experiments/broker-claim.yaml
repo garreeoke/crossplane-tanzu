@@ -1,0 +1,8 @@
+apiVersion: carto.crossplane.io/v1alpha1
+kind: BrokerForTanzu
+metadata:
+  name: carto-broker-100
+spec:
+  writeConnectionSecretToRef:
+    name: brokerfortanzu
+  id: carto-broker-100

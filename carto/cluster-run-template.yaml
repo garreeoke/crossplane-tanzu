@@ -6,8 +6,8 @@ spec:
   #outputs:
   #  binding: .status.binding[?(@.name=="name")].value
   template:
-    apiVersion: example.crossplane.io/v1alpha1
-    kind: RabbitForTanzu
+    apiVersion: carto.crossplane.io/v1alpha1
+    kind: BrokerTanzu
     metadata:
       name: rmq-runnable
     spec:

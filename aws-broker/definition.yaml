@@ -1,17 +1,17 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xbrokerfortanzujets.carto.crossplane.io
+  name: xbrokertanzus.carto.crossplane.io
 spec:
   connectionSecretKeys:
   - kubeconfig
   group: carto.crossplane.io
   names:
-    kind: XBrokerForTanzuJet
-    plural: xbrokerfortanzujets
+    kind: XBrokerTanzu
+    plural: xbrokertanzus
   claimNames:
-    kind: BrokerForTanzuJet
-    plural: brokerfortanzujets
+    kind: BrokerTanzu
+    plural: brokertanzujet
   versions:
     - name: v1alpha1
       served: true
@@ -27,5 +27,16 @@ spec:
                 id:
                   type: string
                   description: "id/name"
+                part-of:
+                  type: string
+                  description: Name of application this is part of
+                rabbitUser:
+                  type: string
+                  description: "name of the rabbit user"
+                rabbitSecret:
+                  type: string
+                  description: "base64 string to make a temp user password for the broker"
               required:
                 - id
+                - rabbitUser
+                - rabbitSecret

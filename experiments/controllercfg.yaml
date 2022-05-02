@@ -1,0 +1,10 @@
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: debug-config
+  namespace: upbound-system
+spec:
+  #podSecurityContext:
+    #fsGroup: 2000
+  args:
+  - '--debug'
