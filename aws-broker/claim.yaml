@@ -2,7 +2,6 @@ apiVersion: carto.crossplane.io/v1alpha1
 kind: BrokerTanzu
 metadata:
   name: aws-rabbit
-  namespace: rabbit
 spec:
   id: aws-rabbit
   rabbitUser: rabbit1

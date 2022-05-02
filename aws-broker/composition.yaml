@@ -52,6 +52,8 @@ spec:
               apiVersion: v1
               kind: Secret
               type: Opaque
+              metadata:
+                namespace: rabbit
           providerConfigRef:
             name: kubernetes-provider
       name: secret-for-rabbit-tanzu
@@ -60,5 +62,5 @@ spec:
           toFieldPath: spec.forProvider.manifest.metadata.name
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
-        - fromFieldPath: metadata.namespace
-          toFieldPath: spec.forProvider.manifest.metadata.namespace
+        #- fromFieldPath: metadata.namespace
+        #  toFieldPath: spec.forProvider.manifest.metadata.namespace
