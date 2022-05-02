@@ -41,7 +41,7 @@ spec:
           toFieldPath: spec.forProvider.user[0].username
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.name
-        - fromFieldPath: metadata.namespace
+        - fromFieldPath: "metadata.labels.crossplane.io/claim-namespace"
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
     - base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
@@ -52,8 +52,6 @@ spec:
               apiVersion: v1
               kind: Secret
               type: Opaque
-              metadata:
-                namespace: rabbit
           providerConfigRef:
             name: kubernetes-provider
       name: secret-for-rabbit-tanzu
@@ -62,5 +60,5 @@ spec:
           toFieldPath: spec.forProvider.manifest.metadata.name
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
-        #- fromFieldPath: metadata.namespace
-        #  toFieldPath: spec.forProvider.manifest.metadata.namespace
+        - fromFieldPath: "metadata.labels.crossplane.io/claim-namespace"
+          toFieldPath: spec.forProvider.manifest.metadata.namespace
