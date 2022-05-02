@@ -57,8 +57,8 @@ spec:
       name: secret-for-rabbit-tanzu
       patches:
         - fromFieldPath: spec.id
-          toFieldPath: spec.forProvider.metadata.name
+          toFieldPath: spec.forProvider.manifest.metadata.name
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
         - fromFieldPath: metadata.namespace
-          toFieldPath: spec.forProvider.metadata.namespace
+          toFieldPath: spec.forProvider.manifest.metadata.namespace
