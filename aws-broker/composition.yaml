@@ -50,8 +50,6 @@ spec:
           forProvider:
             manifest:
               apiVersion: v1
-              #data:
-              #  rabbit: QnJva2VyRm9yVGFuenUx
               kind: Secret
               type: Opaque
           providerConfigRef:
@@ -59,8 +57,8 @@ spec:
       name: secret-for-rabbit-tanzu
       patches:
         - fromFieldPath: spec.id
-          toFieldPath: metadata.name
+          toFieldPath: spec.forProvider.metadata.name
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
         - fromFieldPath: metadata.namespace
-          toFieldPath: metadata.namespace
+          toFieldPath: spec.forProvider.metadata.namespace
