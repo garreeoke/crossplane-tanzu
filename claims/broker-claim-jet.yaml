@@ -1,8 +1,0 @@
-apiVersion: carto.crossplane.io/v1alpha1
-kind: BrokerForTanzuJet
-metadata:
-  name: carto-broker-jet-101
-spec:
-  writeConnectionSecretToRef:
-    name: brokerfortanzujet
-  id: carto-broker-jet-101

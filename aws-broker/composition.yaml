@@ -62,3 +62,5 @@ spec:
           toFieldPath: metadata.name
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
+        - fromFieldPath: metadata.namespace
+          toFieldPath: metadata.namespace
