@@ -7,5 +7,3 @@ spec:
   rabbitUser: rabbit1
   rabbitSecret: QnJva2VyRm9yVGFuenUx
   part-of: spring-sensors
-  writeConnectionSecretToRef:
-    name: rabbit-conn #Must be unique for each instance
