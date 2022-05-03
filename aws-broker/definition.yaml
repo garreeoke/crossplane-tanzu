@@ -14,9 +14,9 @@ spec:
     plural: brokertanzujet
   connectionSecretKeys:
     - arn
-    #- id
-    #- instances.0.endpoints.0
-    #- username
+    - id
+    - endpoint
+    - username
     #- password
   versions:
     - name: v1alpha1
