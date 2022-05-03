@@ -61,6 +61,8 @@ spec:
       name: secret-for-rabbit-tanzu
       patches:
         - fromFieldPath: spec.id
+          toFieldPath: metadata.annotations[crossplane.io/external-name]
+        - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.manifest.metadata.name
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
