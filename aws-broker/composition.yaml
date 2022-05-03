@@ -27,7 +27,7 @@ spec:
       patches:
         - fromFieldPath: spec.writeConnectionSecretToRef.name
           toFieldPath: spec.writeConnectionSecretToRef.name
-        - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+        - fromFieldPath: metadata.namespace
           toFieldPath: spec.writeConnectionSecretToRef.namespace
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
