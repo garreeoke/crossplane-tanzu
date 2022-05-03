@@ -51,10 +51,10 @@ spec:
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
         - fromConnectionSecretKey: arn
-        - fromConnectionSecretKey: id
-        - fromConnectionSecretKey: instances.0.endpoints.0
-        - fromConnectionSecretKey: username
-        - fromConnectionSecretKey: password
+        #- fromConnectionSecretKey: id
+        #- fromConnectionSecretKey: instances.0.endpoints.0
+        #- fromConnectionSecretKey: username
+        #- fromConnectionSecretKey: password
     - base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
