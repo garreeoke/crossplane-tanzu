@@ -47,7 +47,6 @@ spec:
                       description: name where connection secret will be written to
                   required:
                     - name
-                    - namespace
               required:
                 - id
                 - rabbitUser
