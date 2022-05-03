@@ -1,9 +1,11 @@
 apiVersion: carto.crossplane.io/v1alpha1
 kind: BrokerTanzu
 metadata:
-  name: aws-rabbit2
+  name: aws-rabbit9
 spec:
-  id: aws-rabbit2
+  id: aws-rabbit9
   rabbitUser: rabbit1
   rabbitSecret: QnJva2VyRm9yVGFuenUx
   part-of: spring-sensors
+  writeConnectionSecretToRef:
+    name: aws-con-blah #Must be unique for each instance
