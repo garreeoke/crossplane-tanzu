@@ -12,8 +12,12 @@ spec:
   claimNames:
     kind: BrokerTanzu
     plural: brokertanzujet
-  #connectionSecretKeys:
-  #- endpoint
+  connectionSecretKeys:
+    - arn
+    - id
+    - instances.0.endpoints.0
+    - username
+    - password
   versions:
     - name: v1alpha1
       served: true
