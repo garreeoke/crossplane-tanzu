@@ -36,19 +36,7 @@ spec:
                 rabbitSecret:
                   type: string
                   description: "base64 string to make a temp user password for the broker"
-                writeConnectionSecretToRef:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: name of connection secret
-                    namespace:
-                      type: string
-                      description: name where connection secret will be written to
-                  required:
-                    - name
               required:
                 - id
                 - rabbitUser
                 - rabbitSecret
-                - writeConnectionSecretToRef
