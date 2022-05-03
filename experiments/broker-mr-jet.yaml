@@ -8,15 +8,18 @@ spec:
     applyImmediately: true
     autoMinorVersionUpgrade: true
     engineType: RabbitMQ
-    brokerName: rabbit2-upbound-aaront
+    brokerName: rabbit-mr-test
     engineVersion: "3.9.13"
     deploymentMode: SINGLE_INSTANCE
     hostInstanceType: mq.t3.micro
     publiclyAccessible: false
     region: us-west-2
     user:
-      - username: rabbit2
+      - username: rabbit
         passwordSecretRef:
           key: rabbit
           name: cloud-creds
           namespace: upbound-system
+  writeConnectionSecretToRef:
+    name: rabbit-conn-test
+    namespace: default
