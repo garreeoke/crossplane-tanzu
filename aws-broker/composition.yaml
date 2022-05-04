@@ -25,7 +25,7 @@ spec:
                   key: rabbit
       name: broker-for-tanzu
       patches:
-        - fromFieldPath: spec.writeConnectionSecretToRef.name
+        - fromFieldPath: spec.id
           toFieldPath: spec.writeConnectionSecretToRef.name
         - fromFieldPath: spec.claimRef.namespace
           toFieldPath: spec.writeConnectionSecretToRef.namespace
@@ -43,6 +43,10 @@ spec:
           toFieldPath: spec.forProvider.user[0].username
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-creds"
         - fromFieldPath: spec.claimRef.namespace
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
@@ -73,6 +77,10 @@ spec:
       patches:
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.manifest.metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-creds"
         - fromFieldPath: spec.rabbitSecret
           toFieldPath: spec.forProvider.manifest.data[rabbit]
         - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
