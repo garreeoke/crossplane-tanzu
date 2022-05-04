@@ -52,16 +52,16 @@ spec:
       connectionDetails:
         - type: FromFieldPath
           name: arn
-          fromFieldPath: status.atProvider.adminUser
+          fromFieldPath: status.atProvider.arn
         - type: FromFieldPath
           name: id
           fromFieldPath: status.atProvider.id
-        - type: FromFieldPath
-          name: endpoint
-          fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps
-        - type: FromFieldPath
-          name: username
-          fromFieldPath: spec.forProvider.user[0].username
+        #- type: FromFieldPath
+        #  name: endpoint
+        #  fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps
+        #- type: FromFieldPath
+        #  name: username
+        #  fromFieldPath: spec.forProvider.user[0].username
     - base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
