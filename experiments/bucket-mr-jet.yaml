@@ -1,0 +1,11 @@
+apiVersion: s3.aws.jet.crossplane.io/v1alpha2
+kind: Bucket
+metadata:
+  name: aaront-upbound-bucket1
+spec:
+  deletionPolicy: "Delete"
+  forProvider:
+    region: us-west-2
+  writeConnectionSecretToRef:
+    name: bucket-con
+    namespace: default
