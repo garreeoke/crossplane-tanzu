@@ -51,8 +51,8 @@ spec:
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
         - type: FromFieldPath
-          name: arn
-          fromFieldPath: test-arn
+          name: test-arn
+          fromFieldPath: arn
         #- type: FromFieldPath
         #  name: endpoint
         #  fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps
