@@ -51,7 +51,7 @@ spec:
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
         - type: FromFieldPath
-          name: test-arn
+          name: arn
           fromFieldPath: arn
         #- type: FromFieldPath
         #  name: endpoint
