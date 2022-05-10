@@ -16,4 +16,4 @@ spec:
       rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
       part-of: $(runnable.spec.inputs.part-of)$
       writeConnectionSecretToRef:
-        name: $(workload.metadata.name)$-connection
+        name: $(runnable.spec.inputs.infra-id)$-connection
