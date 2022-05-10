@@ -3,13 +3,6 @@ kind: ClusterTemplate
 metadata:
   name: upbound-runner
 spec:
-  params:
-    - name: infra-id
-      default: infra
-    - name: rabbitUser
-      default: rabbit1
-    - name: rabbitSecret
-      default: none
   template:
     apiVersion: carto.run/v1alpha1
     kind: Runnable
