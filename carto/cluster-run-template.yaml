@@ -9,12 +9,11 @@ spec:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: BrokerTanzu
     metadata:
-      generateName: $(runnable.metadata.name)$-runnable-
+      generateName: $(runnable.spec.inputs.infra-id)$-
     spec:
-      #id: $(runnable.spec.inputs.infra-id)$
-      id: $(spec.metadata.name)$
+      id: $(spec.template.metadata.name)$
       rabbitUser: $(runnable.spec.inputs.rabbitUser)$
       rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
       part-of: $(runnable.spec.inputs.part-of)$
       writeConnectionSecretToRef:
-        name: $(runnable.spec.inputs.infra-id)$-connection
+        name: $(spec.template.metadata.name)$

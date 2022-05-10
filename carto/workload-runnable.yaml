@@ -7,8 +7,8 @@ metadata:
     part-of: spring-sensors
 spec:
   params:
-    - name: infra-id 
-      value: rabbit-for-spring-sensors
+    - name: infra-id
+      value: $(metadata.name)$
     - name: rabbitUser
       value: rabbit1
     - name: rabbitSecret

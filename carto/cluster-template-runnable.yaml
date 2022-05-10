@@ -7,7 +7,7 @@ spec:
     apiVersion: carto.run/v1alpha1
     kind: Runnable
     metadata:
-      name: $(workload.metadata.name)$-infra
+      name: $(workload.metadata.name)$
     spec:
       serviceAccountName: default
       runTemplateRef:

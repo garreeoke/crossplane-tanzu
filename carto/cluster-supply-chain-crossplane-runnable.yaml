@@ -3,6 +3,13 @@ kind: ClusterSupplyChain
 metadata:
   name: upbound-tanzu
 spec:
+  params:
+    - name: infra-id
+      default: $(workload.metadata.name)$
+    - name: rabbitUser
+      default: rabbit1
+    - name: rabbitSecret
+      default: none
   selector:
     apps.tanzu.vmware.com/workload-type: cloud
   resources:
