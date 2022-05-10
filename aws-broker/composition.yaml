@@ -35,10 +35,6 @@ spec:
           toFieldPath: spec.id
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.brokerName
-          transforms:
-            - type: string
-              string:
-                fmt: "%s-broker"
         - fromFieldPath: spec.rabbitUser
           toFieldPath: spec.forProvider.user[0].username
         - fromFieldPath: spec.id
