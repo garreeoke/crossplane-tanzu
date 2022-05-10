@@ -1,14 +1,26 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterTemplate
 metadata:
-  name: crossplane-runner
+  name: upbound-runner
 spec:
+  params:
+    - name: infra-id
+      default: infra
+    - name: rabbitUser
+      default: rabbit1
+    - name: rabbitSecret
+      default: none
   template:
     apiVersion: carto.run/v1alpha1
     kind: Runnable
     metadata:
-      name: $(workload.metadata.name)$
+      name: $(workload.metadata.name)$-infra
     spec:
       serviceAccountName: default
       runTemplateRef:
-        name: crossplane-runner
+        name: upbound-runner
+      inputs:
+        infra-id: $(params.infra-id)$
+        rabbitUser: $(params.rabbitUser)$
+        rabbitSecret: $(params.rabbitSecret)$
+        part-of: $(workload.metadata.labels.part-of)$

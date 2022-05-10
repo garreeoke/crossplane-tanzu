@@ -1,12 +1,12 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterSupplyChain
 metadata:
-  name: crossplanetest-runnable
+  name: upbound-tanzu
 spec:
   selector:
-    apps.tanzu.vmware.com/workload-type: crossplanetest-runnable
+    apps.tanzu.vmware.com/workload-type: cloud
   resources:
     - name: infra
       templateRef:
         kind: ClusterTemplate
-        name: crossplane-runner
+        name: upbound-runner

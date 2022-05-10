@@ -1,7 +1,7 @@
 apiVersion: carto.run/v1alpha1
 kind: ClusterRunTemplate
 metadata:
-  name: crossplane-runner
+  name: upbound-runner
 spec:
   #outputs:
   #  binding: .status.binding[?(@.name=="name")].value
@@ -9,6 +9,11 @@ spec:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: BrokerTanzu
     metadata:
-      name: rmq-runnable
+      generateName: upbound-runner-
     spec:
-      part-of: spring-sensors
+      id: $(runnable.spec.inputs.infra-id)$
+      rabbitUser: $(runnable.spec.inputs.rabbitUser)$
+      rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
+      part-of: $(runnable.spec.inputs.part-of)$
+      writeConnectionSecretToRef:
+        name: $(workload.metadata.name)$-connection
