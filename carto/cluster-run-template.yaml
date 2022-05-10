@@ -11,7 +11,8 @@ spec:
     metadata:
       generateName: $(runnable.metadata.name)$-runnable-
     spec:
-      id: $(runnable.spec.inputs.infra-id)$
+      #id: $(runnable.spec.inputs.infra-id)$
+      id: $(spec.metadata.name)$
       rabbitUser: $(runnable.spec.inputs.rabbitUser)$
       rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
       part-of: $(runnable.spec.inputs.part-of)$
