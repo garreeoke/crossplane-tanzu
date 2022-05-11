@@ -70,7 +70,7 @@ spec:
             name: kubernetes-provider
       name: secret-for-rabbit-tanzu
       patches:
-        - fromFieldPath: metadata.name
+        - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.manifest.metadata.name
           transforms:
             - type: string
