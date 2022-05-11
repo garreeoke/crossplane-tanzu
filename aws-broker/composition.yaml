@@ -49,7 +49,7 @@ spec:
         - fromFieldPath: spec.claimRef.namespace
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
-        - type: FromFieldPath
+        - type: FromValue
           name: arn
           #fromFieldPath: status.atProvider.arn
           fromValue: arnie
