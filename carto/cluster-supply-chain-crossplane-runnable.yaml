@@ -5,7 +5,7 @@ metadata:
 spec:
   params:
     - name: infra-id
-      default: $(workload.metadata.name)$
+      default: infra
     - name: rabbitUser
       default: rabbit1
     - name: rabbitSecret

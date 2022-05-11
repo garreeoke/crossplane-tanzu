@@ -8,7 +8,7 @@ metadata:
 spec:
   params:
     - name: infra-id
-      value: $(metadata.name)$
+      value: spring-sensors
     - name: rabbitUser
       value: rabbit1
     - name: rabbitSecret
