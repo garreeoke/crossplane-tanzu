@@ -6,6 +6,7 @@ spec:
   compositeTypeRef:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: XBrokerTanzu
+  writeConnectionSecretsToNamespace: default
   resources:
     - base:
         apiVersion: mq.aws.jet.crossplane.io/v1alpha2 # Uncomment to use jet
