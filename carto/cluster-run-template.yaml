@@ -9,7 +9,8 @@ spec:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: BrokerTanzu
     metadata:
-      generateName: $(runnable.spec.inputs.infra-id)$-
+      #generateName: $(runnable.spec.inputs.infra-id)$-
+      name: $(runnable.spec.inputs.infra-id)$
     spec:
       id: $(runnable.spec.inputs.infra-id)$
       rabbitUser: $(runnable.spec.inputs.rabbitUser)$
