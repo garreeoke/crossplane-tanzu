@@ -25,19 +25,21 @@ spec:
                   key: rabbit
       name: broker-for-tanzu
       patches:
-        - fromFieldPath: spec.id
+        - fromFieldPath: metadata.name
           toFieldPath: spec.writeConnectionSecretToRef.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-connection"
         - fromFieldPath: spec.claimRef.namespace
           toFieldPath: spec.writeConnectionSecretToRef.namespace
-        - fromFieldPath: spec.id
+        - fromFieldPath: metadata.name
           toFieldPath: metadata.name
-        - fromFieldPath: spec.id
-          toFieldPath: spec.id
-        - fromFieldPath: spec.id
+        - fromFieldPath: metadata.name
           toFieldPath: spec.forProvider.brokerName
         - fromFieldPath: spec.rabbitUser
           toFieldPath: spec.forProvider.user[0].username
-        - fromFieldPath: spec.id
+        - fromFieldPath: metadata.name
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.name
           transforms:
             - type: string
@@ -68,7 +70,7 @@ spec:
             name: kubernetes-provider
       name: secret-for-rabbit-tanzu
       patches:
-        - fromFieldPath: spec.id
+        - fromFieldPath: metadata.name
           toFieldPath: spec.forProvider.manifest.metadata.name
           transforms:
             - type: string

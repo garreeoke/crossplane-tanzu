@@ -11,9 +11,9 @@ spec:
     metadata:
       generateName: $(runnable.spec.inputs.infra-id)$-
     spec:
-      id: $(metadata.generateName)$
+      #id: $(metadata.generateName)$
       rabbitUser: $(runnable.spec.inputs.rabbitUser)$
       rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
       part-of: $(runnable.spec.inputs.part-of)$
       writeConnectionSecretToRef:
-        name: $(metadata.generateName)$
+        name: $(runnable.spec.inputs.infra-id)$-connection
