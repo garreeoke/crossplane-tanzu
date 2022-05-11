@@ -28,9 +28,9 @@ spec:
             spec:
               type: object
               properties:
-                #id:
-                #  type: string
-                #  description: "id/name"
+                id:
+                  type: string
+                  description: "id/name"
                 part-of:
                   type: string
                   description: Name of application this is part of

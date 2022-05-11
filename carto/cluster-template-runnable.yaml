@@ -13,7 +13,7 @@ spec:
       runTemplateRef:
         name: upbound-runner
       inputs:
-        #infra-id: $(params.infra-id)$
+        infra-id: $(params.infra-id)$
         rabbitUser: $(params.rabbitUser)$
         rabbitSecret: $(params.rabbitSecret)$
         part-of: $(workload.metadata.labels.part-of)$

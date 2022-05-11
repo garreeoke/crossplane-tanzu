@@ -4,8 +4,8 @@ metadata:
   name: upbound-tanzu
 spec:
   params:
-    #- name: infra-id
-    #  default: infra
+    - name: infra-id
+      default: infra
     - name: rabbitUser
       default: rabbit1
     - name: rabbitSecret
