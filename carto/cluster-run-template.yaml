@@ -16,4 +16,4 @@ spec:
       rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
       part-of: $(runnable.spec.inputs.part-of)$
       writeConnectionSecretToRef:
-        name: $(spec.template.metadata.name)$
+        name: $(metadata.name)$
