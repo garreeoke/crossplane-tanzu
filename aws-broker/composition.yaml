@@ -25,6 +25,8 @@ spec:
               - passwordSecretRef:
                   key: rabbit
                   namespace: default
+            writeConnectionSecretToRef:
+              namespace: default
       name: broker-for-tanzu
       patches:
         - fromFieldPath: spec.id
