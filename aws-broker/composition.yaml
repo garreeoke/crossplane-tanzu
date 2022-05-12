@@ -24,6 +24,7 @@ spec:
             user:
               - passwordSecretRef:
                   key: rabbit
+                  namespace: default
       name: broker-for-tanzu
       patches:
         - fromFieldPath: spec.id
