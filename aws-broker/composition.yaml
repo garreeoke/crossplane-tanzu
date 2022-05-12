@@ -26,14 +26,14 @@ spec:
                   key: rabbit
       name: broker-for-tanzu
       patches:
-        - fromFieldPath: spec.id
-          toFieldPath: spec.writeConnectionSecretToRef.name
-          transforms:
-            - type: string
-              string:
-                fmt: "%s-connection"
-        - fromFieldPath: spec.claimRef.namespace
-          toFieldPath: spec.writeConnectionSecretToRef.namespace
+        #- fromFieldPath: spec.id
+        #  toFieldPath: spec.writeConnectionSecretToRef.name
+        #  transforms:
+        #    - type: string
+        #      string:
+        #        fmt: "%s-connection"
+        #- fromFieldPath: spec.claimRef.namespace
+        #  toFieldPath: spec.writeConnectionSecretToRef.namespace
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
         - fromFieldPath: spec.id

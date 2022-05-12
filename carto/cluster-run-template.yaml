@@ -16,5 +16,5 @@ spec:
       rabbitUser: $(runnable.spec.inputs.rabbitUser)$
       rabbitSecret: $(runnable.spec.inputs.rabbitSecret)$
       part-of: $(runnable.spec.inputs.part-of)$
-      writeConnectionSecretToRef:
-        name: $(runnable.spec.inputs.infra-id)$-connection
+      #writeConnectionSecretToRef:
+      #  name: $(runnable.spec.inputs.infra-id)$-connection
