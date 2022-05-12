@@ -44,3 +44,9 @@ spec:
                 #- id
                 - rabbitUser
                 - rabbitSecret
+            status:
+              type: object
+              properties:
+                arn:
+                  description: arn of the broker
+                  type: string
