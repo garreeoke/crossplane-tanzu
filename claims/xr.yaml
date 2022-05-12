@@ -1,11 +1,12 @@
 apiVersion: carto.crossplane.io/v1alpha1
-kind: BrokerTanzu
+kind: XBrokerTanzu
 metadata:
-  name: spring-sensors
+  name: spring-sensors-x
 spec:
-  id: spring-sensors
+  id: spring-sensors-x
   rabbitUser: rabbit1
   rabbitSecret: QnJva2VyRm9yVGFuenUx
   part-of: spring-sensors
   writeConnectionSecretToRef:
-    name: spring-sensors-connection #Must be unique for each instance
+    name: spring-sensors-x-connection #Must be unique for each instance
+    namespace: default

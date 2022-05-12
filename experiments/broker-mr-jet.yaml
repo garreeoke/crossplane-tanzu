@@ -1,7 +1,7 @@
 apiVersion: mq.aws.jet.crossplane.io/v1alpha2
 kind: Broker
 metadata:
-  name: rabbit2-upbound-aaront
+  name: broker-test
 spec:
   deletionPolicy: "Delete"
   forProvider:
@@ -18,8 +18,8 @@ spec:
       - username: rabbit
         passwordSecretRef:
           key: rabbit
-          name: cloud-creds
-          namespace: upbound-system
+          name: spring-sensors-creds
+          namespace: default
   writeConnectionSecretToRef:
-    name: rabbit-conn-test
+    name: blah-blah
     namespace: default
