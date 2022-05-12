@@ -57,7 +57,7 @@ spec:
       connectionDetails:
         - type: FromFieldPath
           name: arn
-          fromFieldPath: status.arn
+          fromFieldPath: status.atProvider.arn
         #- type: FromFieldPath
         #  name: endpoint
         #  fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps
