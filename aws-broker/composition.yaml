@@ -29,6 +29,9 @@ spec:
             namespace: default
       name: broker-for-tanzu
       patches:
+        - type: ToCompositeFieldPath
+          fromFieldPath: status.atProvider.arn
+          toFieldPath: status.arn
         - fromFieldPath: spec.id
           toFieldPath: spec.writeConnectionSecretToRef.name
           transforms:
@@ -54,7 +57,7 @@ spec:
       connectionDetails:
         - type: FromFieldPath
           name: arn
-          fromFieldPath: status.atProvider.arn
+          fromFieldPath: status.arn
         #- type: FromFieldPath
         #  name: endpoint
         #  fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps
