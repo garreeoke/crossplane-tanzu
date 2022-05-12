@@ -71,6 +71,8 @@ spec:
               apiVersion: v1
               kind: Secret
               type: Opaque
+              metadata:
+                namespace: default
           providerConfigRef:
             name: kubernetes-provider
       name: secret-for-rabbit-tanzu
