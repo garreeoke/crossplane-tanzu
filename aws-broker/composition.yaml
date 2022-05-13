@@ -90,3 +90,11 @@ spec:
           toFieldPath: spec.forProvider.manifest.data[rabbit]
         - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
           toFieldPath: spec.forProvider.manifest.metadata.namespace
+        - fromFieldPath: spec.id
+          toFieldPath: spec.writeConnectionSecretToRef.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-object-connection"
+        - fromFieldPath: spec.claimRef.namespace
+          toFieldPath: spec.writeConnectionSecretToRef.namespace
