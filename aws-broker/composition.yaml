@@ -6,7 +6,7 @@ spec:
   compositeTypeRef:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: XBrokerTanzu
-  writeConnectionSecretsToNamespace: default
+  writeConnectionSecretsToNamespace: upbound-system
   resources:
     - base:
         apiVersion: mq.aws.jet.crossplane.io/v1alpha2 # Uncomment to use jet
@@ -26,7 +26,7 @@ spec:
                   key: rabbit
                   namespace: default
           writeConnectionSecretToRef:
-            namespace: default
+            namespace: upbound-system
       name: broker-for-tanzu
       patches:
         - type: ToCompositeFieldPath
@@ -38,8 +38,8 @@ spec:
             - type: string
               string:
                 fmt: "%s-broker-connection"
-        - fromFieldPath: spec.claimRef.namespace
-          toFieldPath: spec.writeConnectionSecretToRef.namespace
+        #- fromFieldPath: spec.claimRef.namespace
+        #  toFieldPath: spec.writeConnectionSecretToRef.namespace
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
         - fromFieldPath: spec.id

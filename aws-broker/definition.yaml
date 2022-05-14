@@ -10,8 +10,8 @@ spec:
   claimNames:
     kind: BrokerTanzu
     plural: brokertanzujet
-  #connectionSecretKeys:
-    #- arn
+  connectionSecretKeys:
+    - arn
     #- id
     #- endpoint
     #- username
@@ -44,9 +44,9 @@ spec:
                 #- id
                 - rabbitUser
                 - rabbitSecret
-            status:
-              type: object
-              properties:
-                arn:
-                  description: arn of the broker
-                  type: string
+            #status:
+            #  type: object
+            #  properties:
+            #    arn:
+            #      description: arn of the broker
+            #      type: string
