@@ -55,12 +55,11 @@ spec:
         - fromFieldPath: spec.claimRef.namespace
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
-        - type: FromFieldPath
+        - fromFieldPath: "status.atProvider.arn"
           name: arn
-          fromFieldPath: status.atProvider.arn
-        - type: FromFieldPath
-          name: id
-          fromFieldPath: status.atProvider.id
+        #- type: FromFieldPath
+        #  name: id
+        #  fromFieldPath: status.atProvider.id
         #- type: FromFieldPath
         #  name: endpoint
         #  fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps

@@ -11,8 +11,8 @@ spec:
     kind: BrokerTanzu
     plural: brokertanzujet
   connectionSecretKeys:
-    - arn
-    #- id
+    #- arn
+   #- id
     #- endpoint
     #- username
     #- password
