@@ -63,8 +63,9 @@ spec:
           name: endpoint  
         - fromFieldPath: spec.forProvider.user[0].username
           name: username
-        - fromValue: "BrokerForTanzu1"
+        - type: FromFieldPath
           name: password
+          value: "BrokerForTanzu1"
     - base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
