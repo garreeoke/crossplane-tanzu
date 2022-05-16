@@ -13,9 +13,9 @@ spec:
   connectionSecretKeys:
     - arn
     - id
-    #- endpoint
-    #- username
-    #- password
+    - endpoint
+    - username
+    - password
   versions:
     - name: v1alpha1
       served: true

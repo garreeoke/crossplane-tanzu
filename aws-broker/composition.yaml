@@ -59,13 +59,12 @@ spec:
           name: arn
         - fromFieldPath: "status.atProvider.id"
           name: id
-        #  fromFieldPath: status.atProvider.id
-        #- type: FromFieldPath
-        #  name: endpoint
-        #  fromFieldPath: status.atProvider.instances[0].endpoints[0].amqps
-        #- type: FromFieldPath
-        #  name: username
-        #  fromFieldPath: spec.forProvider.user[0].username
+        - fromFieldPath: "status.atProvider.instances[0].endpoints[0].amqps"
+          name: endpoint  
+        - fromFieldPath: spec.forProvider.user[0].username
+          name: username
+        - fromValue: "BrokerForTanzu1"
+          name: password
     - base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
