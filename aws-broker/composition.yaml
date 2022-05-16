@@ -3,10 +3,10 @@ kind: Composition
 metadata:
   name: xbrokertanzus.carto.crossplane.io
 spec:
+  writeConnectionSecretsToNamespace: default
   compositeTypeRef:
     apiVersion: carto.crossplane.io/v1alpha1
     kind: XBrokerTanzu
-  writeConnectionSecretsToNamespace: upbound-system
   resources:
     - base:
         apiVersion: mq.aws.jet.crossplane.io/v1alpha2 # Uncomment to use jet
@@ -26,7 +26,7 @@ spec:
                   key: rabbit
                   namespace: default
           writeConnectionSecretToRef:
-            namespace: upbound-system
+            namespace: default
       name: broker-for-tanzu
       patches:
         - type: ToCompositeFieldPath
@@ -57,8 +57,8 @@ spec:
       connectionDetails:
         - fromFieldPath: "status.atProvider.arn"
           name: arn
-        #- type: FromFieldPath
-        #  name: id
+        - fromFieldPath: "status.atProvider.id"
+          name: id
         #  fromFieldPath: status.atProvider.id
         #- type: FromFieldPath
         #  name: endpoint
