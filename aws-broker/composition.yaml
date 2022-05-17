@@ -59,7 +59,7 @@ spec:
           name: arn
         - fromFieldPath: "status.atProvider.id"
           name: id
-        - fromFieldPath: "status.atProvider.instances[0].endpoints[0].amqps"
+        - fromFieldPath: "status.atProvider.instances[0].endpoints[0]"
           name: endpoint  
         #- fromFieldPath: "spec.forProvider.user[0].username"
         #  name: username
