@@ -14,8 +14,8 @@ spec:
     - arn
     - id
     - endpoint
-    - username
-    - password
+    #- username
+    #- password
   versions:
     - name: v1alpha1
       served: true
