@@ -61,8 +61,8 @@ spec:
           name: id
         - fromFieldPath: "status.atProvider.instances[0].endpoints[0]"
           name: endpoint  
-        #- fromFieldPath: "spec.forProvider.user[0].username"
-        #  name: username
+        - fromFieldPath: "spec.forProvider.user[0].username"
+          name: username
         #- type: FromFieldPath
         #  name: password
         #  value: "BrokerForTanzu1"
