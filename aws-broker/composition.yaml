@@ -64,8 +64,8 @@ spec:
         - fromFieldPath: "spec.forProvider.user[0].username"
           name: username
         - type: FromValue
-          value: "BrokerForTanzu1"
           name: password
+          value: "BrokerForTanzu1"
           #vhost: /
           #addresses
     - base:
