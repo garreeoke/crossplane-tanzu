@@ -13,7 +13,9 @@ spec:
   connectionSecretKeys:
     - arn
     - id
-    - endpoint
+    - addresses
+    - host
+    - port
     - username
     - password
   versions:
