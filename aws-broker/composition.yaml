@@ -64,7 +64,7 @@ spec:
         #- type: FromValue
         #  name: port
         #  value: "5671"
-        - fromFieldPath: "status.atProvider.instances[0].ipAddresses"
+        - fromFieldPath: "status.atProvider.instances[0].ipAddress"
           name: addresses  #this seems to be empty
         - type: FromValue
           name: virtual-host

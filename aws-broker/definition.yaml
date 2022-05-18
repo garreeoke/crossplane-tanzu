@@ -16,6 +16,7 @@ spec:
     - addresses
     - host
     - port
+    - virtual-host
     - username
     - password
   versions:
