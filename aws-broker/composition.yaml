@@ -60,12 +60,14 @@ spec:
         - fromFieldPath: "status.atProvider.id"
           name: id
         - fromFieldPath: "status.atProvider.instances[0].endpoints[0]"
-          name: endpoint  
+          name: endpoint  #this could be the host?
         - fromFieldPath: "spec.forProvider.user[0].username"
           name: username
-        - type: FromFieldPath
-          name: password
-          value: "BrokerForTanzu1"
+       # - type: FromFieldPath
+        #  name: password
+         # value: "BrokerForTanzu1"
+          #vhost: /
+          #addresses
     - base:
         apiVersion: kubernetes.crossplane.io/v1alpha1
         kind: Object
