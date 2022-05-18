@@ -63,7 +63,7 @@ spec:
           name: endpoint  #this could be the host?
         - fromFieldPath: "spec.forProvider.user[0].username"
           name: username
-        - value: "BrokerForTanzu1"
+        - FromValue: "BrokerForTanzu1"
           name: password
           #vhost: /
           #addresses
