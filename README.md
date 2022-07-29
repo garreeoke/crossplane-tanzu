@@ -17,5 +17,5 @@ This repo is created as an example of Crossplane/Upbound working with a Tanzu Ap
 4. Setup the supply-chain and templates needed within tanzu
     >`kubectl apply -f tanzu/`
 5. Create the workload and get a cup of coffee
-    ```tanzu apps workload create -f demo/workload.yaml```
+    >`tanzu apps workload create -f demo/workload.yaml`
 6. Access spring-sensors and see if data is coming in
