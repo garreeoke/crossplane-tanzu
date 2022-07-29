@@ -1,0 +1,54 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xawsbrokermqs.tap.upbound.io
+spec:
+  group: tap.upbound.io
+  names:
+    kind: XAwsBrokerMq
+    plural: xawsbrokermqs
+  claimNames:
+    kind: AwsBrokerMq
+    plural: awsbrokermqs
+  connectionSecretKeys:
+    - type
+    - addresses
+    #- host
+    #- port
+    - virtual-host
+    - username
+    - password
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          description: Create a amazon mq broker for use with carto 
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: "id/name"
+                part-of:
+                  type: string
+                  description: Name of application this is part of
+                region:
+                  type: string
+                  description: "aws-region"
+                engineVersion:
+                  type: string
+                  description: "rabbitmq version"
+              required:
+                - id
+                - region
+                - engineVersion
+            #status:
+            #  type: object
+            #  properties:
+            #    amq-host:
+            #      description: only the host
+            #      type: string
