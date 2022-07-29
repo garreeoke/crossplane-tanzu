@@ -1,51 +1,40 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: xbrokertanzus.carto.crossplane.io
+  name: xawsbrokermqs.tap.upbound.io
 spec:
-  writeConnectionSecretsToNamespace: default
   compositeTypeRef:
-    apiVersion: carto.crossplane.io/v1alpha1
-    kind: XBrokerTanzu
+    apiVersion: tap.upbound.io/v1alpha1
+    kind: XAwsBrokerMq
+  publishConnectionDetailsWithStoreConfigRef:
+    name: default
   resources:
     - base:
-        apiVersion: mq.aws.jet.crossplane.io/v1alpha2 # Uncomment to use jet
+        apiVersion: mq.aws.upbound.io/v1beta1
         kind: Broker
         spec:
           deletionPolicy: "Delete"
           forProvider:
             autoMinorVersionUpgrade: true
             engineType: RabbitMQ
-            engineVersion: "3.9.13"
             deploymentMode: SINGLE_INSTANCE
             hostInstanceType: mq.t3.micro
             publiclyAccessible: true
-            region: us-west-2
             user:
               - passwordSecretRef:
                   key: rabbit
                   namespace: default
-          writeConnectionSecretToRef:
-            namespace: default
-      name: broker-for-tanzu
+                username: rabbit1
+      name: aws-broker-mq
       patches:
-        - type: ToCompositeFieldPath
-          fromFieldPath: status.atProvider.arn
-          toFieldPath: status.arn
-        - fromFieldPath: spec.id
-          toFieldPath: spec.writeConnectionSecretToRef.name
-          transforms:
-            - type: string
-              string:
-                fmt: "%s-broker-connection"
-        #- fromFieldPath: spec.claimRef.namespace
-        #  toFieldPath: spec.writeConnectionSecretToRef.namespace
         - fromFieldPath: spec.id
           toFieldPath: metadata.name
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.brokerName
-        - fromFieldPath: spec.rabbitUser
-          toFieldPath: spec.forProvider.user[0].username
+        - fromFieldPath: spec.region
+          toFieldPath: spec.forProvider.region
+        - fromFieldPath: spec.engineVersion
+          toFieldPath: spec.forProvider.engineVersion
         - fromFieldPath: spec.id
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.name
           transforms:
@@ -55,17 +44,11 @@ spec:
         - fromFieldPath: spec.claimRef.namespace
           toFieldPath: spec.forProvider.user[0].passwordSecretRef.namespace
       connectionDetails:
-        - fromFieldPath: "status.atProvider.arn"
-          name: arn
-        - fromFieldPath: "status.atProvider.id"
-          name: id
+        - type: FromValue
+          name: type
+          value: rabbitmq
         - fromFieldPath: "status.atProvider.instances[0].endpoints[0]"
-          name: host
-        #- type: FromValue
-        #  name: port
-        #  value: "5671"
-        - fromFieldPath: "status.atProvider.instances[0].ipAddress"
-          name: addresses  #this seems to be empty
+          name: addresses
         - type: FromValue
           name: virtual-host
           value: "/"
@@ -86,17 +69,173 @@ spec:
               type: Opaque
               metadata:
                 namespace: default
+              data:
+                rabbit: QnJva2VyRm9yVGFuenUx
           providerConfigRef:
             name: kubernetes-provider
       name: secret-for-rabbit-tanzu
       patches:
         - fromFieldPath: spec.id
-          toFieldPath: spec.forProvider.manifest.metadata.name
+          toFieldPath: metadata.name
           transforms:
             - type: string
               string:
                 fmt: "%s-creds"
-        - fromFieldPath: spec.rabbitSecret
-          toFieldPath: spec.forProvider.manifest.data[rabbit]
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-creds"        
         - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
           toFieldPath: spec.forProvider.manifest.metadata.namespace
+    - base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+              kind: ClusterInstanceClass
+              spec:
+                description:
+                  short: AWS Rabbit broker cluster instance class
+                pool:
+                  kind: Secret
+                  fieldSelector: type=connection.crossplane.io/v1alpha1
+          providerConfigRef:
+            name: kubernetes-provider
+      name: cluster-instance-claim
+      patches:
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.metadata.name
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.pool.labelSelector.matchLabels["services.apps.tanzu.vmware.com/class"]
+    - base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+              kind: ResourceClaim
+              spec:
+                ref:
+                  apiVersion: v1
+                  kind: Secret
+          providerConfigRef:
+            name: kubernetes-provider
+      name: resource-claim
+      patches:
+        - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+          toFieldPath: spec.forProvider.manifest.metadata.namespace
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.metadata.name
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.ref.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-connection"
+    - base:
+        apiVersion: kubernetes.crossplane.io/v1alpha1
+        kind: Object
+        spec:
+          forProvider:
+            manifest:
+              apiVersion: apps/v1
+              kind: Deployment
+              metadata:
+                annotations:
+                  boot.spring.io/actuator: http://:8080/actuator
+                  boot.spring.io/version: 2.5.6
+                labels:
+                  app.kubernetes.io/component: publisher
+                name: spring-sensors-publisher
+              spec:
+                selector:
+                  matchLabels:
+                    app.kubernetes.io/name: spring-sensors-publisher
+                template:
+                  metadata:
+                    annotations:
+                      boot.spring.io/actuator: http://:8080/actuator
+                      boot.spring.io/version: 2.5.6
+                    labels:
+                      app.kubernetes.io/component: publisher
+                  spec:
+                    containers:
+                    - env:
+                      - name: JAVA_TOOL_OPTIONS
+                        value: -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator" -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.server.port="8080" -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+                      - name: SERVICE_BINDING_ROOT
+                        value: /bindings
+                      - name: PORT
+                        value: "8080"
+                      image: index.docker.io/springdeveloper/spring-sensors-publisher:latest
+                      imagePullPolicy: IfNotPresent
+                      name: workload
+                      ports:
+                      - containerPort: 8080
+                        name: user-port
+                        protocol: TCP
+                      resources: {}
+                      securityContext:
+                        runAsUser: 1000
+                      terminationMessagePath: /dev/termination-log
+                      terminationMessagePolicy: FallbackToLogsOnError
+                      volumeMounts:
+                      - readOnly: true
+                    terminationGracePeriodSeconds: 300
+                    volumes:
+                    - projected:
+                        defaultMode: 420
+                        #sources:
+                        #- secret:
+                        #    name: spring-sensors-broker-rabbit #PATCH
+          providerConfigRef:
+            name: kubernetes-provider
+      name: rabbit-publisher
+      patches:
+        - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
+          toFieldPath: spec.forProvider.manifest.metadata.namespace
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.metadata.labels["app.kubernetes.io/name"]
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-publisher"
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.metadata.labels["app.kubernetes.io/part-of"]
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.template.metadata.labels["app.kubernetes.io/name"]
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-publisher"
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.template.metadata.labels["app.kubernetes.io/part-of"]
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.template.spec.volumes[0].name
+          transforms:
+            - type: string
+              string:
+                fmt: "bindings-%s"
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.template.spec.volumes[0].projected.sources[0].secret.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-connection"
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.template.spec.containers[0].volumeMounts[0].mountPath
+          transforms:
+            - type: string
+              string:
+                fmt: "/bindings/%s"
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.template.spec.containers[0].volumeMounts[0].name
+          transforms:
+            - type: string
+              string:
+                fmt: "bindings-%s"

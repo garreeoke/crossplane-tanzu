@@ -14,6 +14,6 @@ spec:
         name: upbound-runner
       inputs:
         infra-id: $(params.infra-id)$
-        rabbitUser: $(params.rabbitUser)$
-        rabbitSecret: $(params.rabbitSecret)$
-        part-of: $(workload.metadata.labels.part-of)$
+        region: $(params.region)$
+        engineVersion: $(params.engineVersion)$
+        #part-of: $(workload.metadata.labels[app.kubernetes.io/part-of])$

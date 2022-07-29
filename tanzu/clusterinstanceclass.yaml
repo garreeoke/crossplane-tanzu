@@ -1,0 +1,13 @@
+apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+kind: ClusterInstanceClass
+metadata:
+  name: broker-rabbit
+spec:
+  description:
+    short: AWS Rabbit broker
+  pool:
+    kind: Secret
+    labelSelector:
+      matchLabels:
+        services.apps.tanzu.vmware.com/class: broker-rabbit
+    fieldSelector: type=connection.crossplane.io/v1alpha1

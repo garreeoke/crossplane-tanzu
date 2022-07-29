@@ -1,11 +1,13 @@
-apiVersion: carto.crossplane.io/v1alpha1
-kind: BrokerTanzu
+apiVersion: tap.upbound.io/v1alpha1
+kind: AwsBrokerMq
 metadata:
   name: spring-sensors
 spec:
   id: spring-sensors
-  rabbitUser: rabbit1
-  rabbitSecret: QnJva2VyRm9yVGFuenUx
-  part-of: spring-sensors
-  writeConnectionSecretToRef:
-    name: spring-sensors-connection #Must be unique for each instance
+  region: us-west-2
+  engineVersion: "3.9.13"
+  publishConnectionDetailsTo:
+    name: spring-sensors-connection
+    metadata:
+      labels:
+        services.apps.tanzu.vmware.com/class: spring-sensors

@@ -1,0 +1,18 @@
+apiVersion: kubernetes.crossplane.io/v1alpha1
+kind: Object
+metadata:
+  name: blah
+spec:
+  managementPolicy: ObserveCreateUpdate
+  forProvider:
+    manifest:
+      apiVersion: v1
+      kind: Secret
+      type: Opaque
+      metadata:
+        namespace: default
+        name: spring-sensors-creds
+      data:
+        rabbit: QnJva2VyRm9yVGFuenUx
+  providerConfigRef:
+    name: kubernetes-provider

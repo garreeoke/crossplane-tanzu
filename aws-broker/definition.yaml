@@ -1,21 +1,20 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xbrokertanzus.carto.crossplane.io
+  name: xawsbrokermqs.tap.upbound.io
 spec:
-  group: carto.crossplane.io
+  group: tap.upbound.io
   names:
-    kind: XBrokerTanzu
-    plural: xbrokertanzus
+    kind: XAwsBrokerMq
+    plural: xawsbrokermqs
   claimNames:
-    kind: BrokerTanzu
-    plural: brokertanzujet
+    kind: AwsBrokerMq
+    plural: awsbrokermqs
   connectionSecretKeys:
-    - arn
-    - id
+    - type
     - addresses
-    - host
-    - port
+    #- host
+    #- port
     - virtual-host
     - username
     - password
@@ -37,19 +36,19 @@ spec:
                 part-of:
                   type: string
                   description: Name of application this is part of
-                rabbitUser:
+                region:
                   type: string
-                  description: "name of the rabbit user"
-                rabbitSecret:
+                  description: "aws-region"
+                engineVersion:
                   type: string
-                  description: "base64 string to make a temp user password for the broker"
+                  description: "rabbitmq version"
               required:
                 - id
-                - rabbitUser
-                - rabbitSecret
+                - region
+                - engineVersion
             #status:
             #  type: object
             #  properties:
-            #    arn:
-            #      description: arn of the broker
+            #    amq-host:
+            #      description: only the host
             #      type: string
