@@ -21,6 +21,8 @@ This repo is created as an example of Upbound's Universal Crossplane (UXP) worki
 5. Create the workload and get a cup of coffee
     >`tanzu apps workload create -f demo/workload.yaml`
 6. Access spring-sensors and see if data is coming in
+7. Cleanup it all up
+    >`tanzu apps workload delete spring-sensors -y`
 
 ## What's in the Box (repository)?
 - crossplane
