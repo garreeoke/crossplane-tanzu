@@ -1,20 +1,22 @@
 # crossplane-tanzu
 
-This repo is created as an example of Crossplane/Upbound working with a Tanzu Application Platform supply-chain to create and use an AWS Broker (RabbitMQ) and then use it in the Spring-Sensors application.
+This repo is created as an example of Upbound's Universal Crossplane (UXP) working with VMware's Tanzu Application Platform (TAP). It will utilize Crossplane within a TAP supply-chain to create and use an AWS Broker (RabbitMQ) and then use the created RabbitMQ instance in the Spring-Sensors application that is built and deployed.
 
 ## Pre-requisites
-1. Create and gain access to Kubernetes cluster (tested with v1.24.2 on GKE)
-2. Install Universal Cloud Platform (Upbound's Crossplane distro)
-3. Install Upbound's Official AWS Provider
+1. Create and gain access to Kubernetes cluster (tested with v1.24.2 on GKE with 12vcpu and 48GB of memory)
+2. [Install Universal Crossplane](https://cloud.upbound.io/docs/uxp/install) (Upbound's Crossplane distro)
+3. [Install Upbound's Official AWS Provider](https://marketplace.upbound.io/providers/upbound/provider-aws/v0.5.0)
 4. Install Tanzu Application Platform
-5. Access to create a Broker in AWS.
+    - [General install instructions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-install-intro.html)
+    - [AWS Quickstart](https://aws-quickstart.github.io/quickstart-vmware-tanzu-application-platform/#_deployment_options)
+5. Access to create a Broker in AWS
 
 ## Steps to complete the demo
 1. Complete pre-requisites
 2. Add a provider config for your AWS account
 3. Using Crossplane, create the one API used to create everything needed on the cluster and in AWS 
     >`kubectl apply -f crossplane/`
-4. Setup the supply-chain and templates needed within tanzu
+4. Setup the supply-chain and templates needed within Tanzu Application Platform
     >`kubectl apply -f tanzu/`
 5. Create the workload and get a cup of coffee
     >`tanzu apps workload create -f demo/workload.yaml`
