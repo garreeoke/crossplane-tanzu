@@ -13,7 +13,7 @@ This repo is created as an example of Upbound's Universal Crossplane (UXP) worki
 
 ## Steps to complete the demo
 1. Complete pre-requisites
-2. Add a provider config for your AWS account
+2. [Add a secret and provider config for your AWS account](https://cloud.upbound.io/docs/getting-started/build-control-plane/#add-your-credentials)
 3. Using Crossplane, create the one API used to create everything needed on the cluster and in AWS 
     >`kubectl apply -f crossplane/`
 4. Setup the supply-chain and templates needed within Tanzu Application Platform
