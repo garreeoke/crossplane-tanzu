@@ -21,3 +21,16 @@ This repo is created as an example of Upbound's Universal Crossplane (UXP) worki
 5. Create the workload and get a cup of coffee
     >`tanzu apps workload create -f demo/workload.yaml`
 6. Access spring-sensors and see if data is coming in
+
+## What's in the Box (repository)?
+- crossplane
+    - composition.yaml: Composition of all the resources needed
+    - definition.yaml:  Definition of the only API needed to create all the needed resources
+    - claims:  directory with a test claim file
+- tanzu
+    - source-to-url-supply-chain-cloud.yaml: Main supply chain config
+    - cluster-template-runnable.yaml: Template used within the supply chain to call the runnable
+    - cluster-run-template.yaml: Template for the runnable
+- demo
+    - workload.yaml: The only file needed for the end-user to build and create everything on the cluster and in AWS
+- experiments: files used while testing this out
