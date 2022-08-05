@@ -151,11 +151,10 @@ spec:
                   boot.spring.io/version: 2.5.6
                 labels:
                   app.kubernetes.io/component: publisher
-                name: spring-sensors-publisher
               spec:
-                selector:
-                  matchLabels:
-                    app.kubernetes.io/name: spring-sensors-publisher
+                #selector:
+                #  matchLabels:
+                #    app.kubernetes.io/name: spring-sensors-publisher
                 template:
                   metadata:
                     annotations:
@@ -197,6 +196,18 @@ spec:
             name: kubernetes-provider
       name: rabbit-publisher
       patches:
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-publisher"
+        - fromFieldPath: spec.id
+          toFieldPath: spec.forProvider.manifest.spec.selector.matchLabels["app.kubernetes.io/name"]
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-publisher"
         - fromFieldPath: metadata.labels[crossplane.io/claim-namespace]
           toFieldPath: spec.forProvider.manifest.metadata.namespace
         - fromFieldPath: spec.id

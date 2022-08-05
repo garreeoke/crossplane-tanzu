@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    boot.spring.io/actuator: http://:8080/actuator
+    boot.spring.io/version: 2.5.6
+  labels:
+    app.kubernetes.io/component: publisher
+    app.kubernetes.io/name: spring-sensors-publisher
+    app.kubernetes.io/part-of: spring-sensors
+    apps.tanzu.vmware.com/workload-type: web
+    tanzu.app.live.view: "true"
+    tanzu.app.live.view.application.flavours: spring-boot
+    tanzu.app.live.view.application.name: spring-sensors-publisher
+  name: spring-sensors-publisher
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: spring-sensors-publisher
+  template:
+    metadata:
+      annotations:
+        boot.spring.io/actuator: http://:8080/actuator
+        boot.spring.io/version: 2.5.6
+      labels:
+        app.kubernetes.io/component: publisher
+        app.kubernetes.io/name: spring-sensors-publisher
+        app.kubernetes.io/part-of: spring-sensors
+        apps.tanzu.vmware.com/workload-type: web
+        tanzu.app.live.view: "true"
+        tanzu.app.live.view.application.flavours: spring-boot
+        tanzu.app.live.view.application.name: spring-sensors-publisher
+    spec:
+      containers:
+      - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: -Dmanagement.endpoint.health.show-details="always" -Dmanagement.endpoints.web.base-path="/actuator"
+            -Dmanagement.endpoints.web.exposure.include="*" -Dmanagement.server.port="8080"
+            -Dserver.port="8080" -Dserver.shutdown.grace-period="24s"
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings
+        - name: PORT
+          value: "8080"
+        image: index.docker.io/springdeveloper/spring-sensors-publisher:latest
+        imagePullPolicy: IfNotPresent
+        name: workload
+        ports:
+        - containerPort: 8080
+          name: user-port
+          protocol: TCP
+        resources: {}
+        securityContext:
+          runAsUser: 1000
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: FallbackToLogsOnError
+        volumeMounts:
+        - mountPath: /bindings/rmq
+          name: binding-rmq-1
+          readOnly: true
+      terminationGracePeriodSeconds: 300
+      volumes:
+      - name: binding-rmq-1
+        projected:
+          defaultMode: 420
+          sources:
+          - secret:
+              name: rmq-1-default-user

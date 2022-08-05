@@ -3,24 +3,17 @@ kind: Workload
 metadata:
   name: spring-sensors
   labels:
-    apps.tanzu.vmware.com/workload-type: cloud
+    apps.tanzu.vmware.com/workload-type: web
     app.kubernetes.io/part-of: spring-sensors
 spec:
-  params:
-    - name: infra-id
-      value: spring-sensors
-    - name: region
-      value: us-west-2
-    - name: engineVersion
-      value: "3.9.13" 
   source:
     git:
-      url: https://github.com/garreeoke/spring-sensors-rabbit.git
+      url: https://github.com/ryan-a-baker/spring-sensors-rabbit.git
       ref:
         branch: main
   serviceClaims:
-    - name: broker
+    - name: rmq
       ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ResourceClaim
-        name: spring-sensors
+        apiVersion: rabbitmq.com/v1beta1
+        kind: RabbitmqCluster
+        name: rmq-1

@@ -19,7 +19,7 @@ This repo is created as an example of Upbound's Universal Crossplane (UXP) worki
 4. Setup the supply-chain and templates needed within Tanzu Application Platform
     >`kubectl apply -f tanzu/`
 5. Create the workload and get a cup of coffee
-    >`tanzu apps workload create -f demo/workload.yaml`
+    >`tanzu apps workload create -f demo/workload-cloud.yaml`
 6. Access spring-sensors and see if data is coming in
 7. Cleanup it all up
     >`tanzu apps workload delete spring-sensors -y`
@@ -34,5 +34,5 @@ This repo is created as an example of Upbound's Universal Crossplane (UXP) worki
     - cluster-template-runnable.yaml: Template used within the supply chain to call the runnable
     - cluster-run-template.yaml: Template for the runnable
 - demo
-    - workload.yaml: The only file needed for the end-user to build and create everything on the cluster and in AWS
+    - workload-cloud.yaml: The only file needed for the end-user to build and create everything on the cluster and in AWS
 - experiments: files used while testing this out
