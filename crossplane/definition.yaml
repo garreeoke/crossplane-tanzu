@@ -13,8 +13,6 @@ spec:
   connectionSecretKeys:
     - type
     - addresses
-    #- host
-    #- port
     - virtual-host
     - username
     - password
@@ -24,7 +22,7 @@ spec:
       referenceable: true
       schema:
         openAPIV3Schema:
-          description: Create a amazon mq broker for use with carto 
+          description: Create a amazon mq broker and tanzu objects
           type: object
           properties:
             spec:
@@ -46,9 +44,3 @@ spec:
                 - id
                 - region
                 - engineVersion
-            #status:
-            #  type: object
-            #  properties:
-            #    amq-host:
-            #      description: only the host
-            #      type: string

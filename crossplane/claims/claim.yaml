@@ -1,13 +1,13 @@
 apiVersion: tap.upbound.io/v1alpha1
 kind: AwsBrokerMq
 metadata:
-  name: spring-sensors
+  name: spring-sensors-cloud
 spec:
-  id: spring-sensors
+  id: spring-sensors-cloud
   region: us-west-2
   engineVersion: "3.9.13"
   publishConnectionDetailsTo:
     name: spring-sensors-connection
     metadata:
       labels:
-        services.apps.tanzu.vmware.com/class: spring-sensors
+        services.apps.tanzu.vmware.com/class: spring-sensors-cloud

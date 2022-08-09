@@ -8,10 +8,6 @@ metadata:
     app.kubernetes.io/component: publisher
     app.kubernetes.io/name: spring-sensors-publisher
     app.kubernetes.io/part-of: spring-sensors
-    apps.tanzu.vmware.com/workload-type: web
-    tanzu.app.live.view: "true"
-    tanzu.app.live.view.application.flavours: spring-boot
-    tanzu.app.live.view.application.name: spring-sensors-publisher
   name: spring-sensors-publisher
 spec:
   selector:
@@ -26,10 +22,6 @@ spec:
         app.kubernetes.io/component: publisher
         app.kubernetes.io/name: spring-sensors-publisher
         app.kubernetes.io/part-of: spring-sensors
-        apps.tanzu.vmware.com/workload-type: web
-        tanzu.app.live.view: "true"
-        tanzu.app.live.view.application.flavours: spring-boot
-        tanzu.app.live.view.application.name: spring-sensors-publisher
     spec:
       containers:
       - env:

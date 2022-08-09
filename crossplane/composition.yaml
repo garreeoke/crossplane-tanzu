@@ -152,9 +152,6 @@ spec:
                 labels:
                   app.kubernetes.io/component: publisher
               spec:
-                #selector:
-                #  matchLabels:
-                #    app.kubernetes.io/name: spring-sensors-publisher
                 template:
                   metadata:
                     annotations:
