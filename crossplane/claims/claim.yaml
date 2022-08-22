@@ -7,7 +7,7 @@ spec:
   region: us-west-2
   engineVersion: "3.9.13"
   publishConnectionDetailsTo:
-    name: spring-sensors-connection
+    name: spring-sensors-cloud-connection
     metadata:
       labels:
         services.apps.tanzu.vmware.com/class: spring-sensors-cloud

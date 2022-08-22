@@ -11,7 +11,7 @@ spec:
       type: Opaque
       metadata:
         namespace: default
-        name: spring-sensors-creds
+        name: spring-sensors-cloud-creds
       data:
         rabbit: QnJva2VyRm9yVGFuenUx
   providerConfigRef:
